@@ -31,19 +31,23 @@ import static java.util.Objects.hash;
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private StudentController studentController;
+
     @PostMapping(value = "/login")
     public RestResult login(@RequestBody LoginReq loginReq){
-        System.out.println(hash(loginReq.getPassword()+"raisehand"));
+//        System.out.println(hash(loginReq.getPassword()+"raisehand"));
         QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
         queryWrapper
                 .eq("teacher_email",loginReq.getEmail())
                 .eq("teacher_password",hash(loginReq.getPassword()+"raisehand"));
         Teacher teacher=teacherService.getOne(queryWrapper);
         if (teacher == null){
-            return ResultUtils.error(0,"wrong");
+            return studentController.studentLogin(loginReq);
         }else {
             LoginRes loginRes = new LoginRes();
             loginRes.setUserId(teacher.getId());
+            loginRes.setStatus("student");
             Jedis jedis = new Jedis("127.0.0.1", 6379);
             jedis.set(String.valueOf(teacher.getId()), String.valueOf(hash(teacher.getTeacherPassword() + "raisehand")));
             jedis.expire(String.valueOf(teacher.getId()), 1728000);

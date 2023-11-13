@@ -6,4 +6,5 @@ import lombok.Data;
 public class LoginRes {
     private Integer userId;
     private String token;
+    private String status;
 }
