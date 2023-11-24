@@ -47,7 +47,7 @@ public class TeacherController {
         }else {
             LoginRes loginRes = new LoginRes();
             loginRes.setUserId(teacher.getId());
-            loginRes.setStatus("student");
+            loginRes.setStatus("teacher");
             Jedis jedis = new Jedis("127.0.0.1", 6379);
             jedis.set(String.valueOf(teacher.getId()), String.valueOf(hash(teacher.getTeacherPassword() + "raisehand")));
             jedis.expire(String.valueOf(teacher.getId()), 1728000);
