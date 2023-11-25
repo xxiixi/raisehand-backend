@@ -1,8 +1,9 @@
 package com.gentry.raisehand.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,7 +29,8 @@ public class Teacher implements Serializable {
     private String teacherEmail;
 
     private String teacherPassword;
-
+    @Version
+    @TableField(fill = FieldFill.INSERT)
     private Integer version;
 
 

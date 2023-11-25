@@ -2,6 +2,7 @@ package com.gentry.raisehand.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.gentry.raisehand.Req.CheckTeacherReq;
 import com.gentry.raisehand.Req.LoginReq;
 import com.gentry.raisehand.Res.LoginRes;
 import com.gentry.raisehand.entity.Teacher;
@@ -53,6 +54,25 @@ public class TeacherController {
             jedis.expire(String.valueOf(teacher.getId()), 1728000);
             loginRes.setToken(String.valueOf(hash(teacher.getTeacherPassword() + "raisehand")));
             return ResultUtils.success(loginRes);
+        }
+    }
+    @PostMapping(value = "/checkTeacher")
+    public RestResult checkTeacher(@RequestBody CheckTeacherReq checkTeacherReq){
+        return ResultUtils.success(checkTeacherFunction(checkTeacherReq.getTeacherId(),checkTeacherReq.getToken()));
+
+    }
+    public int checkTeacherFunction(int teacherId,String token){
+        Jedis jedis = new Jedis("127.0.0.1",6379);
+        System.out.println(jedis.exists(String.valueOf(teacherId)));
+        System.out.println(jedis.get(String.valueOf(teacherId)));
+        if (!jedis.exists(String.valueOf(teacherId))){
+            return 0;
+        }else {
+            if (jedis.get(String.valueOf(teacherId)).equals(token)){
+                return 1;
+            }else{
+                return 0;
+            }
         }
     }
 }

@@ -2,6 +2,8 @@ package com.gentry.raisehand.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.gentry.raisehand.Req.CheckStudetReq;
+import com.gentry.raisehand.Req.CheckTeacherReq;
 import com.gentry.raisehand.Req.LoginReq;
 import com.gentry.raisehand.Res.LoginRes;
 import com.gentry.raisehand.entity.Student;
@@ -9,6 +11,8 @@ import com.gentry.raisehand.service.StudentService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +33,8 @@ import static java.util.Objects.hash;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private TeacherController teacherController;
     public RestResult studentLogin(LoginReq loginReq){
         QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
         queryWrapper
@@ -47,6 +53,11 @@ public class StudentController {
             loginRes.setToken(String.valueOf(hash(student.getStudentPassword() + "raisehand")));
             return ResultUtils.success(loginRes);
         }
+    }
+    @PostMapping(value = "/checkStudent")
+    public RestResult checkStudent(@RequestBody CheckStudetReq checkstudentReq){
+        return ResultUtils.success(teacherController.checkTeacherFunction(checkstudentReq.getStudentId(),checkstudentReq.getToken()));
+
     }
 
 }
