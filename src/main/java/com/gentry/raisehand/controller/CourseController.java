@@ -12,6 +12,9 @@ import com.gentry.raisehand.service.CourseService;
 import com.gentry.raisehand.service.TeacherCourseService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +33,7 @@ import java.util.List;
  * @author lyt
  * @since 2023-11-25
  */
+@Api(tags = "Course add delete get")
 @RestController
 @RequestMapping("/gentry/raisehand/course")
 public class CourseController {
@@ -37,8 +41,7 @@ public class CourseController {
     private CourseService courseService;
     @Autowired
     private TeacherCourseService teacherCourseService;
-    @Autowired
-    private TeacherController teacherController;
+    @ApiOperation("course add")
     @PostMapping(value = "/addCourse")
     public RestResult addCourse(@RequestBody AddCourseReq addCourseReq){
         Course course=new Course();
@@ -55,6 +58,7 @@ public class CourseController {
         addCourseRes.setTeacherCourse(teacherCourse);
         return ResultUtils.success(addCourseReq);
     }
+    @ApiOperation("course delete")
     @PostMapping(value = "/deleteCourse")
     public RestResult deleteCourse(@RequestBody DeleteCourseReq deleteCourseReq){
         QueryWrapper<TeacherCourse> queryWrapper = new QueryWrapper<>();
@@ -62,6 +66,7 @@ public class CourseController {
                 .eq("teacher_id",deleteCourseReq.getTeacherId())
                 .eq("course_id",deleteCourseReq.getCourseId());
         TeacherCourse teacherCourse=teacherCourseService.getOne(queryWrapper);
+        TeacherController teacherController=new TeacherController();
         int loginStatus=teacherController.checkTeacherFunction(deleteCourseReq.getTeacherId(),deleteCourseReq.getToken());
         if (loginStatus == 1&&teacherCourse !=null){
             courseService.removeById(teacherCourse.getId());
@@ -70,6 +75,7 @@ public class CourseController {
         }
         return ResultUtils.success(teacherCourse);
     }
+    @ApiOperation("course get")
     @PostMapping(value = "/getCourse")
     public RestResult getCourse(@RequestBody GetCourseReq getCourseReq){
         QueryWrapper<TeacherCourse> queryWrapper = new QueryWrapper<>();

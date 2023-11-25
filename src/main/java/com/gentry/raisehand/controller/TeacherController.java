@@ -9,6 +9,8 @@ import com.gentry.raisehand.entity.Teacher;
 import com.gentry.raisehand.service.TeacherService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,14 +29,13 @@ import static java.util.Objects.hash;
  * @author lyt
  * @since 2023-11-13
  */
+@Api(tags = "Teacher login(student) check")
 @RestController
 @RequestMapping("/gentry/raisehand/teacher")
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
-    @Autowired
-    private StudentController studentController;
-
+    @ApiOperation("teacher and student login")
     @PostMapping(value = "/login")
     public RestResult login(@RequestBody LoginReq loginReq){
 //        System.out.println(hash(loginReq.getPassword()+"raisehand"));
@@ -44,6 +45,7 @@ public class TeacherController {
                 .eq("teacher_password",hash(loginReq.getPassword()+"raisehand"));
         Teacher teacher=teacherService.getOne(queryWrapper);
         if (teacher == null){
+            StudentController studentController=new StudentController();
             return studentController.studentLogin(loginReq);
         }else {
             LoginRes loginRes = new LoginRes();
@@ -56,6 +58,7 @@ public class TeacherController {
             return ResultUtils.success(loginRes);
         }
     }
+    @ApiOperation("check teacher login")
     @PostMapping(value = "/checkTeacher")
     public RestResult checkTeacher(@RequestBody CheckTeacherReq checkTeacherReq){
         return ResultUtils.success(checkTeacherFunction(checkTeacherReq.getTeacherId(),checkTeacherReq.getToken()));

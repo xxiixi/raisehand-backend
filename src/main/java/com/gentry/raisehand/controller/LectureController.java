@@ -10,6 +10,8 @@ import com.gentry.raisehand.entity.Lecture;
 import com.gentry.raisehand.service.LectureService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,13 +29,13 @@ import java.util.List;
  * @author lyt
  * @since 2023-11-25
  */
+@Api(tags = "lecture add delete get")
 @RestController
 @RequestMapping("/gentry/raisehand/lecture")
 public class LectureController {
     @Autowired
     private LectureService lectureService;
-    @Autowired
-    private TeacherController teacherController;
+    @ApiOperation("Lecture add")
     @PostMapping(value = "/addLecture")
     public RestResult addLecture(@RequestBody AddLectureReq addLectureReq){
         Lecture lecture=new Lecture();
@@ -42,8 +44,10 @@ public class LectureController {
         lectureService.save(lecture);
         return ResultUtils.success(lecture);
     }
+    @ApiOperation("Lecture delete")
     @PostMapping(value = "/deleteLecture")
     public RestResult deleteLecture(@RequestBody DeleteLectureReq deleteLectureReq){
+        TeacherController teacherController=new TeacherController();
         int loginStatus=teacherController.checkTeacherFunction(deleteLectureReq.getTeacherId(),deleteLectureReq.getToken());
         if (loginStatus == 1){
             lectureService.removeById(deleteLectureReq.getLectrueId());
@@ -52,6 +56,7 @@ public class LectureController {
         }
         return ResultUtils.success(lectureService.getById(deleteLectureReq.getLectrueId()));
     }
+    @ApiOperation("Lecture get")
     @PostMapping(value = "/getLecture")
     public RestResult getLecture(@RequestBody GetLectureReq getLectureReq){
         QueryWrapper<Lecture> queryWrapper = new QueryWrapper<>();

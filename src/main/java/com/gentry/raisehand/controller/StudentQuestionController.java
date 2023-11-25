@@ -9,6 +9,8 @@ import com.gentry.raisehand.entity.StudentQuestion;
 import com.gentry.raisehand.service.StudentQuestionService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,11 +28,13 @@ import java.util.List;
  * @author lyt
  * @since 2023-11-25
  */
+@Api(tags = "StudentQuestion add get")
 @RestController
 @RequestMapping("/gentry/raisehand/student-question")
 public class StudentQuestionController {
     @Autowired
     private StudentQuestionService studentQuestionService;
+    @ApiOperation("StudentQuestion add")
     @PostMapping(value = "/addStudentQuestion")
     public RestResult addStudentQuestion(@RequestBody AddStudentQuestionReq addStudentQuestionReq){
         StudentQuestion studentQuestion=new StudentQuestion();
@@ -43,6 +47,7 @@ public class StudentQuestionController {
         studentQuestionService.save(studentQuestion);
         return ResultUtils.success(studentQuestion);
     }
+    @ApiOperation("StudentQuestion delete")
     @PostMapping(value = "/getStudentQuestion")
     public RestResult getStudentQuestion(@RequestBody GetStudentQuestionReq getStudentQuestionReq){
         QueryWrapper<StudentQuestion> queryWrapper = new QueryWrapper<>();

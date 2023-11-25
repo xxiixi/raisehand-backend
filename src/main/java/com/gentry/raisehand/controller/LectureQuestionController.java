@@ -9,6 +9,8 @@ import com.gentry.raisehand.entity.LectureQuestion;
 import com.gentry.raisehand.service.LectureQuestionService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,13 +28,13 @@ import java.util.List;
  * @author lyt
  * @since 2023-11-25
  */
+@Api(tags = "LectureQuestion add delete get")
 @RestController
 @RequestMapping("/gentry/raisehand/lecture-question")
 public class LectureQuestionController {
     @Autowired
-    private TeacherController teacherController;
-    @Autowired
     private LectureQuestionService lectureQuestionService;
+    @ApiOperation("LectureQuestion add")
     @PostMapping(value = "/addLectureQuestion")
     public RestResult addLectureQuestion(@RequestBody AddLectureQuestionReq addLectureQuestionReq){
         LectureQuestion lectureQuestion=new LectureQuestion();
@@ -44,8 +46,10 @@ public class LectureQuestionController {
         lectureQuestionService.save(lectureQuestion);
         return ResultUtils.success(lectureQuestion);
     }
+    @ApiOperation("LectureQuestion delete")
     @PostMapping(value = "/deleteLectureQuestion")
     public RestResult deleteLectureQuestion(@RequestBody DeleteLectureQuestionReq deleteLectureQuestionReq){
+        TeacherController teacherController=new TeacherController();
         int loginStatus=teacherController.checkTeacherFunction(deleteLectureQuestionReq.getTeacherId(),deleteLectureQuestionReq.getToken());
         if (loginStatus == 1){
             lectureQuestionService.removeById(deleteLectureQuestionReq.getLectureQuestionId());
@@ -54,6 +58,7 @@ public class LectureQuestionController {
         }
         return ResultUtils.success(lectureQuestionService.getById(deleteLectureQuestionReq.getLectureQuestionId()));
     }
+    @ApiOperation("LectureQuestion get")
     @PostMapping(value = "/getLectureQuestion")
     public RestResult getLectureQuestion(@RequestBody GetLectureQuestionReq getLectureQuestionReq){
         QueryWrapper<LectureQuestion> queryWrapper = new QueryWrapper<>();
