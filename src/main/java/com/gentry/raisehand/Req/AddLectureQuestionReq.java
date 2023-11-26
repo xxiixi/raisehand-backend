@@ -16,7 +16,7 @@ public class AddLectureQuestionReq {
     @ApiModelProperty(value = "the content of question",example = "Which of the following is true?")
     @NonNull
     private String questionContent;
-    @ApiModelProperty(value = "The status of the issue, indicating that the issue is saved, sent, or expired",example = "saved")
+    @ApiModelProperty(value = "The status of the issue, indicating that the issue is saved, post, or expired,inClass",example = "saved")
     @NonNull
     private String questionStatus;
     @ApiModelProperty(value = "Type of question, multiple choice, single choice, text question",example = "multiple choice")

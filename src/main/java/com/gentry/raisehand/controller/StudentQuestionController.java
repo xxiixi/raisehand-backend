@@ -12,11 +12,7 @@ import com.gentry.raisehand.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +24,7 @@ import java.util.List;
  * @author lyt
  * @since 2023-11-25
  */
+@CrossOrigin
 @Api(tags = "StudentQuestion add get")
 @RestController
 @RequestMapping("/gentry/raisehand/student-question")
@@ -47,7 +44,7 @@ public class StudentQuestionController {
         studentQuestionService.save(studentQuestion);
         return ResultUtils.success(studentQuestion);
     }
-    @ApiOperation("StudentQuestion delete")
+    @ApiOperation("StudentQuestion get")
     @PostMapping(value = "/getStudentQuestion")
     public RestResult getStudentQuestion(@RequestBody GetStudentQuestionReq getStudentQuestionReq){
         QueryWrapper<StudentQuestion> queryWrapper = new QueryWrapper<>();

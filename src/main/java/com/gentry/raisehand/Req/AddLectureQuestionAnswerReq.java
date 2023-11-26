@@ -19,4 +19,8 @@ public class AddLectureQuestionAnswerReq {
     @ApiModelProperty(value = "the status of answer,There is no answer to the text question, one of the single choice states is correct, multiple choice states are correct, but at least one is correct",example = "correct")
     @NonNull
     private String answerStatus;
+
+    @ApiModelProperty(value = "the rank of answer,A is 1,B is 2,if delete 1,A is 2",example = "1")
+    @NonNull
+    private int answerRank;
 }

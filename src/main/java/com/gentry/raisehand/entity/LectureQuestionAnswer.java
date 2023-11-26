@@ -31,6 +31,8 @@ public class LectureQuestionAnswer implements Serializable {
     private String answerContent;
 
     private String answerStatus;
+
+    private int answerRank;
     @TableLogic(value = "0", delval = "1")
     @TableField(fill = FieldFill.INSERT)
     private Integer deleteFlag;

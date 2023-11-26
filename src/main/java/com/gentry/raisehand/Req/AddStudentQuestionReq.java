@@ -22,7 +22,7 @@ public class AddStudentQuestionReq {
     @ApiModelProperty(value = "The status of the problem, whether it has been solved or not",example = "solced")
     @NonNull
     private String studentQuestionStatus;
-    @ApiModelProperty(value = "The type of question, not currently used, you need to give it a value, text",example = "text")
+    @ApiModelProperty(value = "The type of question, Like anonymity",example = "anonymity")
     @NonNull
     private String studentQuestionType;
 }

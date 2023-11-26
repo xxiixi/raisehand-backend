@@ -2,6 +2,7 @@ package com.gentry.raisehand.controller;
 
 
 import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author lyt
  * @since 2023-11-25
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/gentry/raisehand/teacher-course")
 public class TeacherCourseController {

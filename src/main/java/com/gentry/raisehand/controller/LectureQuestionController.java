@@ -2,22 +2,23 @@ package com.gentry.raisehand.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.gentry.raisehand.Req.AddLectureQuestionReq;
-import com.gentry.raisehand.Req.DeleteLectureQuestionReq;
-import com.gentry.raisehand.Req.GetLectureQuestionReq;
+import com.gentry.raisehand.Req.*;
 import com.gentry.raisehand.entity.LectureQuestion;
+import com.gentry.raisehand.entity.PushLectureQuestion;
+import com.gentry.raisehand.entity.Student;
+import com.gentry.raisehand.entity.StudentCourse;
 import com.gentry.raisehand.service.LectureQuestionService;
+import com.gentry.raisehand.service.PushLectureQuestionService;
+import com.gentry.raisehand.service.StudentCourseService;
+import com.gentry.raisehand.service.StudentService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,12 +29,19 @@ import java.util.List;
  * @author lyt
  * @since 2023-11-25
  */
-@Api(tags = "LectureQuestion add delete get")
+@CrossOrigin
+@Api(tags = "LectureQuestion add delete get post move")
 @RestController
 @RequestMapping("/gentry/raisehand/lecture-question")
 public class LectureQuestionController {
     @Autowired
     private LectureQuestionService lectureQuestionService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private StudentCourseService studentCourseService;
+    @Autowired
+    private PushLectureQuestionService pushLectureQuestionService;
     @ApiOperation("LectureQuestion add")
     @PostMapping(value = "/addLectureQuestion")
     public RestResult addLectureQuestion(@RequestBody AddLectureQuestionReq addLectureQuestionReq){
@@ -66,6 +74,33 @@ public class LectureQuestionController {
                 .eq("lecture_id",getLectureQuestionReq.getLectureId());
         List<LectureQuestion> lectureQuestionList=lectureQuestionService.list(queryWrapper);
         return ResultUtils.success(lectureQuestionList);
+    }
+    @ApiOperation("LectureQuestion post")
+    @PostMapping(value = "/postLectureQuestion")
+    public RestResult postLectureQuestion(@RequestBody PostLectureQuestionReq postLectureQuestionReq){
+        LectureQuestion lectureQuestion=lectureQuestionService.getById(postLectureQuestionReq.getQuestionId());
+        lectureQuestion.setQuestionStatus("post");
+        lectureQuestionService.save(lectureQuestion);
+        PushLectureQuestion pushLectureQuestion =new PushLectureQuestion();
+        QueryWrapper<StudentCourse> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("course_id",postLectureQuestionReq.getCourseId());
+        List<StudentCourse>studentCourseList=studentCourseService.list(queryWrapper);
+        pushLectureQuestion.setQuestionId(lectureQuestion.getId());
+        List<PushLectureQuestion>pushLectureQuestionList=new ArrayList<>();
+        for(StudentCourse studentCourse : studentCourseList){
+            pushLectureQuestion.setStudentId(studentCourse.getStudentId());
+            pushLectureQuestionList.add(pushLectureQuestion);
+        }
+        pushLectureQuestionService.saveBatch(pushLectureQuestionList);
+        return ResultUtils.success(pushLectureQuestionList);
+    }
+    @ApiOperation("LectureQuestion move to class")
+    @PostMapping(value = "/moveLectureQuestion")
+    public RestResult moveLectureQuestion(@RequestBody MoveLectureQuestionReq moveLectureQuestionReq){
+        LectureQuestion lectureQuestion=lectureQuestionService.getById(moveLectureQuestionReq.getQuestionId());
+        lectureQuestion.setQuestionStatus("inClass");
+        lectureQuestionService.save(lectureQuestion);
+        return ResultUtils.success(lectureQuestion);
     }
 }
 
