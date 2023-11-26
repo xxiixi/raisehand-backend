@@ -53,7 +53,7 @@ public class CourseController {
         AddCourseRes addCourseRes= new AddCourseRes();
         addCourseRes.setCourse(course);
         addCourseRes.setTeacherCourse(teacherCourse);
-        return ResultUtils.success(addCourseReq);
+        return ResultUtils.success(addCourseRes);
     }
     @ApiOperation("course delete")
     @PostMapping(value = "/deleteCourse")
@@ -79,7 +79,11 @@ public class CourseController {
         queryWrapper
                 .eq("teacher_id",getCourseReq.getTeacherId());
         List<TeacherCourse> teacherCourses=teacherCourseService.list(queryWrapper);
-        return ResultUtils.success(teacherCourses);
+        List<Course> courseList=new ArrayList<>();
+        for (TeacherCourse teacherCourse:teacherCourses){
+            courseList.add(courseService.getById(teacherCourse.getCourseId()));
+        }
+        return ResultUtils.success(courseList);
     }
 
 }
