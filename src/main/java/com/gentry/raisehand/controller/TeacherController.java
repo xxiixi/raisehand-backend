@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gentry.raisehand.Req.CheckTeacherReq;
 import com.gentry.raisehand.Req.LoginReq;
 import com.gentry.raisehand.Res.LoginRes;
+import com.gentry.raisehand.entity.Student;
 import com.gentry.raisehand.entity.Teacher;
+import com.gentry.raisehand.service.StudentService;
 import com.gentry.raisehand.service.TeacherService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
@@ -32,6 +34,8 @@ import static java.util.Objects.hash;
 @RequestMapping("/gentry/raisehand/teacher")
 public class TeacherController {
     @Autowired
+    private StudentService studentService;
+    @Autowired
     private TeacherService teacherService;
     @ApiOperation("teacher and student login")
     @PostMapping(value = "/login")
@@ -43,8 +47,23 @@ public class TeacherController {
                 .eq("teacher_password",hash(loginReq.getPassword()+"raisehand"));
         Teacher teacher=teacherService.getOne(queryWrapper);
         if (teacher == null){
-            StudentController studentController=new StudentController();
-            return studentController.studentLogin(loginReq);
+            QueryWrapper<Student> queryWrapperStudent = new QueryWrapper<>();
+            queryWrapperStudent
+                    .eq("student_email",loginReq.getEmail())
+                    .eq("student_password",hash(loginReq.getPassword()+"raisehand"));
+            Student student=studentService.getOne(queryWrapperStudent);
+            if (student == null){
+                return ResultUtils.error(0,"wrong");
+            }else {
+                LoginRes loginRes = new LoginRes();
+                loginRes.setUserId(student.getId());
+                loginRes.setStatus("student");
+                Jedis jedis = new Jedis("127.0.0.1", 6379);
+                jedis.set(String.valueOf(student.getId()), String.valueOf(hash(student.getStudentPassword() + "raisehand")));
+                jedis.expire(String.valueOf(student.getId()), 1728000);
+                loginRes.setToken(String.valueOf(hash(student.getStudentPassword() + "raisehand")));
+                return ResultUtils.success(loginRes);
+            }
         }else {
             LoginRes loginRes = new LoginRes();
             loginRes.setUserId(teacher.getId());

@@ -30,7 +30,7 @@ public class Course implements Serializable {
 
     private String courseCode;
 
-    private String courseSemster;
+    private String courseSemester;
     @Version
     @TableField(fill = FieldFill.INSERT)
     private Integer version;

@@ -32,27 +32,7 @@ import static java.util.Objects.hash;
 @RestController
 @RequestMapping("/gentry/raisehand/student")
 public class StudentController {
-    @Autowired
-    private StudentService studentService;
-    public RestResult studentLogin(LoginReq loginReq){
-        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
-        queryWrapper
-                .eq("student_email",loginReq.getEmail())
-                .eq("student_password",hash(loginReq.getPassword()+"raisehand"));
-        Student student=studentService.getOne(queryWrapper);
-        if (student == null){
-            return ResultUtils.error(0,"wrong");
-        }else {
-            LoginRes loginRes = new LoginRes();
-            loginRes.setUserId(student.getId());
-            loginRes.setStatus("student");
-            Jedis jedis = new Jedis("127.0.0.1", 6379);
-            jedis.set(String.valueOf(student.getId()), String.valueOf(hash(student.getStudentPassword() + "raisehand")));
-            jedis.expire(String.valueOf(student.getId()), 1728000);
-            loginRes.setToken(String.valueOf(hash(student.getStudentPassword() + "raisehand")));
-            return ResultUtils.success(loginRes);
-        }
-    }
+
     @ApiOperation("check student login")
     @PostMapping(value = "/checkStudent")
     public RestResult checkStudent(@RequestBody CheckStudetReq checkstudentReq){

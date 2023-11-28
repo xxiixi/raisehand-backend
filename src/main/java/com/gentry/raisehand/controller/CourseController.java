@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gentry.raisehand.Req.AddCourseReq;
 import com.gentry.raisehand.Req.DeleteCourseReq;
 import com.gentry.raisehand.Req.GetCourseReq;
+import com.gentry.raisehand.Req.GetCourseSemesterReq;
 import com.gentry.raisehand.Res.AddCourseRes;
 import com.gentry.raisehand.entity.Course;
 import com.gentry.raisehand.entity.TeacherCourse;
@@ -44,7 +45,7 @@ public class CourseController {
         Course course=new Course();
         course.setCourseName(addCourseReq.getCourseName());
         course.setCourseCode(addCourseReq.getCourseCode());
-        course.setCourseSemster(addCourseReq.getCourseSemster());
+        course.setCourseSemester(addCourseReq.getCourseSemester());
         courseService.save(course);
         TeacherCourse teacherCourse =new TeacherCourse();
         teacherCourse.setTeacherId(addCourseReq.getTeacherId());
@@ -81,10 +82,31 @@ public class CourseController {
         List<TeacherCourse> teacherCourses=teacherCourseService.list(queryWrapper);
         List<Course> courseList=new ArrayList<>();
         for (TeacherCourse teacherCourse:teacherCourses){
-            courseList.add(courseService.getById(teacherCourse.getCourseId()));
+            Course course=courseService.getById(teacherCourse.getCourseId());
+            if (course !=null){
+                courseList.add(course);
+            }
         }
         return ResultUtils.success(courseList);
     }
-
+    @ApiOperation("the same name but not same semester course get ")
+    @PostMapping(value = "/getCourseSemester")
+    public RestResult getCourseSemester(@RequestBody GetCourseSemesterReq getCourseSemesterReq){
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("course_name",getCourseSemesterReq.getCourseName())
+                .eq("course_code",getCourseSemesterReq.getCourseCode());
+        List<Course> courseList=courseService.list(queryWrapper);
+        for(Course course:courseList){
+            QueryWrapper<TeacherCourse>teacherCourseQueryWrapper=new QueryWrapper<>();
+            teacherCourseQueryWrapper
+                    .eq("teacher_id",getCourseSemesterReq.getTeacherId())
+                    .eq("course_id",course.getId());
+            if (teacherCourseService.getOne(teacherCourseQueryWrapper) ==null){
+                courseList.remove(course);
+            }
+        }
+        return ResultUtils.success(courseList);
+    }
 }
 

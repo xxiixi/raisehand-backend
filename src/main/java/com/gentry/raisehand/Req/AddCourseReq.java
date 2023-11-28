@@ -18,7 +18,7 @@ public class AddCourseReq {
     private String courseCode;
     @ApiModelProperty(value = "the semster of course",example = "FA23")
     @NonNull
-    private String courseSemster;
+    private String courseSemester;
     @ApiModelProperty(value = "the id of teacher",example = "1")
     @NonNull
     private int teacherId;
