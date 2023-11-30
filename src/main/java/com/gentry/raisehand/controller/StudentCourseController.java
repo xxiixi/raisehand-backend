@@ -4,8 +4,13 @@ package com.gentry.raisehand.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gentry.raisehand.Req.AddStudentFeedbackReq;
 import com.gentry.raisehand.Req.GetStudentCourseReq;
+import com.gentry.raisehand.Res.GetStudentCourseRes;
+import com.gentry.raisehand.entity.Course;
+import com.gentry.raisehand.entity.Lecture;
 import com.gentry.raisehand.entity.Student;
 import com.gentry.raisehand.entity.StudentCourse;
+import com.gentry.raisehand.service.CourseService;
+import com.gentry.raisehand.service.LectureService;
 import com.gentry.raisehand.service.StudentCourseService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
@@ -14,6 +19,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,13 +37,34 @@ import java.util.List;
 public class StudentCourseController {
     @Autowired
     private StudentCourseService studentCourseService;
+    @Autowired
+    private CourseService courseService;
+    @Autowired
+    private LectureService lectureService;
     @ApiOperation("StudentCourse get")
     @PostMapping(value = "/getStudentCourse")
     public RestResult getStudentCourse(@RequestBody GetStudentCourseReq getStudentCourseReq){
         QueryWrapper<StudentCourse> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("student_id",getStudentCourseReq.getStudentId());
         List<StudentCourse>studentCourseList=studentCourseService.list(queryWrapper);
-        return ResultUtils.success(studentCourseList);
+        List<Course>courseList=new ArrayList<>();
+        for(StudentCourse studentCourse:studentCourseList){
+            Course course=courseService.getById(studentCourse.getCourseId());
+            if ( course != null){
+                courseList.add(course);
+            }
+        }
+        List<GetStudentCourseRes>getStudentCourseResList=new ArrayList<>();
+        for(Course course:courseList){
+            QueryWrapper<Lecture> lectureQueryWrapper = new QueryWrapper<>();
+            lectureQueryWrapper.eq("course_id",course.getId());
+            List<Lecture>lectureList=lectureService.list(lectureQueryWrapper);
+            GetStudentCourseRes getStudentCourseRes=new GetStudentCourseRes();
+            getStudentCourseRes.setCourse(course);
+            getStudentCourseRes.setLectureList(lectureList);
+            getStudentCourseResList.add(getStudentCourseRes);
+        }
+        return ResultUtils.success(getStudentCourseResList);
     }
 
 }

@@ -7,9 +7,12 @@ import com.gentry.raisehand.Req.DeleteCourseReq;
 import com.gentry.raisehand.Req.GetCourseReq;
 import com.gentry.raisehand.Req.GetCourseSemesterReq;
 import com.gentry.raisehand.Res.AddCourseRes;
+import com.gentry.raisehand.Res.GetStudentCourseRes;
 import com.gentry.raisehand.entity.Course;
+import com.gentry.raisehand.entity.Lecture;
 import com.gentry.raisehand.entity.TeacherCourse;
 import com.gentry.raisehand.service.CourseService;
+import com.gentry.raisehand.service.LectureService;
 import com.gentry.raisehand.service.TeacherCourseService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
@@ -39,6 +42,8 @@ public class CourseController {
     private CourseService courseService;
     @Autowired
     private TeacherCourseService teacherCourseService;
+    @Autowired
+    private LectureService lectureService;
     @ApiOperation("course add")
     @PostMapping(value = "/addCourse")
     public RestResult addCourse(@RequestBody AddCourseReq addCourseReq){
@@ -106,7 +111,17 @@ public class CourseController {
                 courseList.remove(course);
             }
         }
-        return ResultUtils.success(courseList);
+        List<GetStudentCourseRes>getStudentCourseResList=new ArrayList<>();
+        for(Course course:courseList){
+            QueryWrapper<Lecture> lectureQueryWrapper = new QueryWrapper<>();
+            lectureQueryWrapper.eq("course_id",course.getId());
+            List<Lecture>lectureList=lectureService.list(lectureQueryWrapper);
+            GetStudentCourseRes getStudentCourseRes=new GetStudentCourseRes();
+            getStudentCourseRes.setCourse(course);
+            getStudentCourseRes.setLectureList(lectureList);
+            getStudentCourseResList.add(getStudentCourseRes);
+        }
+        return ResultUtils.success(getStudentCourseResList);
     }
 }
 
