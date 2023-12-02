@@ -10,5 +10,7 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class GetLectureQuestionSReq {
     @NonNull
+    private  int lectureId;
+    @NonNull
     private int studentId;
 }

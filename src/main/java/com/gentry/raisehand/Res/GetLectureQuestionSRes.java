@@ -8,6 +8,6 @@ import java.util.List;
 
 @Data
 public class GetLectureQuestionSRes {
-    private List<LectureQuestion>lectureQuestions;
+    private LectureQuestion lectureQuestion;
     private List<LectureQuestionAnswer>lectureQuestionAnswers;
 }

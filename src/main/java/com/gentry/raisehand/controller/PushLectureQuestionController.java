@@ -6,12 +6,10 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.gentry.raisehand.Req.GetLectureQuestionSReq;
 import com.gentry.raisehand.Req.PostLectureQuestionReq;
 import com.gentry.raisehand.Res.GetLectureQuestionSRes;
-import com.gentry.raisehand.entity.LectureQuestion;
-import com.gentry.raisehand.entity.LectureQuestionAnswer;
-import com.gentry.raisehand.entity.Student;
-import com.gentry.raisehand.entity.TeacherStudentQuestion;
+import com.gentry.raisehand.entity.*;
 import com.gentry.raisehand.service.LectureQuestionAnswerService;
 import com.gentry.raisehand.service.LectureQuestionService;
+import com.gentry.raisehand.service.PushLectureQuestionService;
 import com.gentry.raisehand.service.TeacherStudentQuestionService;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
@@ -42,26 +40,31 @@ public class PushLectureQuestionController {
     private LectureQuestionService lectureQuestionService;
     @Autowired
     private LectureQuestionAnswerService lectureQuestionAnswerService;
+    @Autowired
+    private PushLectureQuestionService pushLectureQuestionService;
     @ApiOperation("LectureQuestion get by student")
     @PostMapping(value = "/getLectureQuestionS")
     public RestResult getLectureQuestionS(@RequestBody GetLectureQuestionSReq getLectureQuestionSReq){
-        QueryWrapper<TeacherStudentQuestion> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("student_id",getLectureQuestionSReq.getStudentId());
-        List<TeacherStudentQuestion>teacherStudentQuestionList=teacherStudentQuestionService.list(queryWrapper);
-        List<LectureQuestion>lectureQuestionList=new ArrayList<>();
-        List<LectureQuestionAnswer>lectureQuestionAnswerList=new ArrayList<>();
-        for(TeacherStudentQuestion teacherStudentQuestion:teacherStudentQuestionList){
-            lectureQuestionList.add(lectureQuestionService.getById(teacherStudentQuestion.getQuestionId()));
-            for (LectureQuestion lectureQuestion:lectureQuestionList){
-                QueryWrapper<LectureQuestionAnswer> queryWrapperAnswer = new QueryWrapper<>();
-                queryWrapper.eq("question_id",lectureQuestion.getId());
-                lectureQuestionAnswerList.addAll(lectureQuestionAnswerService.list(queryWrapperAnswer));
-            }
+        QueryWrapper<PushLectureQuestion> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("lecture_id",getLectureQuestionSReq.getLectureId())
+                .eq("student_id",getLectureQuestionSReq.getStudentId());
+        List<PushLectureQuestion>pushLectureQuestionList=pushLectureQuestionService.list(queryWrapper);
+        List<GetLectureQuestionSRes>getLectureQuestionSResList=new ArrayList<>();
+        for(PushLectureQuestion pushLectureQuestion:pushLectureQuestionList){
+            GetLectureQuestionSRes getLectureQuestionSRes=new GetLectureQuestionSRes();
+            LectureQuestion lectureQuestion =lectureQuestionService.getById(pushLectureQuestion.getQuestionId());
+            QueryWrapper<LectureQuestionAnswer> queryWrapperAnswer = new QueryWrapper<>();
+            queryWrapperAnswer
+                    .eq("question_id",lectureQuestion.getId());
+            List<LectureQuestionAnswer> lectureQuestionAnswerList = lectureQuestionAnswerService.list(queryWrapperAnswer);
+            getLectureQuestionSRes.setLectureQuestionAnswers(lectureQuestionAnswerList);
+            getLectureQuestionSRes.setLectureQuestion(lectureQuestion);
+            getLectureQuestionSResList.add(getLectureQuestionSRes);
         }
-        GetLectureQuestionSRes getLectureQuestionSRes=new GetLectureQuestionSRes();
-        getLectureQuestionSRes.setLectureQuestionAnswers(lectureQuestionAnswerList);
-        getLectureQuestionSRes.setLectureQuestions(lectureQuestionList);
-        return ResultUtils.success(getLectureQuestionSRes);
+
+
+        return ResultUtils.success(getLectureQuestionSResList);
 
     }
 

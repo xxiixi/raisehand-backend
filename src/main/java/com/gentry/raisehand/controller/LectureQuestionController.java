@@ -80,7 +80,11 @@ public class LectureQuestionController {
     public RestResult postLectureQuestion(@RequestBody PostLectureQuestionReq postLectureQuestionReq){
         LectureQuestion lectureQuestion=lectureQuestionService.getById(postLectureQuestionReq.getQuestionId());
         lectureQuestion.setQuestionStatus("post");
-        lectureQuestionService.save(lectureQuestion);
+        QueryWrapper<LectureQuestion> questionQueryWrapper = new QueryWrapper<>();
+        questionQueryWrapper
+                .eq("id",postLectureQuestionReq.getQuestionId());
+        lectureQuestionService.update(lectureQuestion,questionQueryWrapper);
+
         PushLectureQuestion pushLectureQuestion =new PushLectureQuestion();
         QueryWrapper<StudentCourse> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("course_id",postLectureQuestionReq.getCourseId());
@@ -88,6 +92,7 @@ public class LectureQuestionController {
         pushLectureQuestion.setQuestionId(lectureQuestion.getId());
         List<PushLectureQuestion>pushLectureQuestionList=new ArrayList<>();
         for(StudentCourse studentCourse : studentCourseList){
+            pushLectureQuestion.setLectureId(postLectureQuestionReq.getLectureId());
             pushLectureQuestion.setStudentId(studentCourse.getStudentId());
             pushLectureQuestionList.add(pushLectureQuestion);
         }
@@ -99,7 +104,21 @@ public class LectureQuestionController {
     public RestResult moveLectureQuestion(@RequestBody MoveLectureQuestionReq moveLectureQuestionReq){
         LectureQuestion lectureQuestion=lectureQuestionService.getById(moveLectureQuestionReq.getQuestionId());
         lectureQuestion.setQuestionStatus("inClass");
-        lectureQuestionService.save(lectureQuestion);
+        QueryWrapper<LectureQuestion> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("id",moveLectureQuestionReq.getQuestionId());
+        lectureQuestionService.update(lectureQuestion,queryWrapper);
+        return ResultUtils.success(lectureQuestion);
+    }
+    @ApiOperation("LectureQuestion expire to class")
+    @PostMapping(value = "/expireLectureQuestion")
+    public RestResult expireLectureQuestion(@RequestBody MoveLectureQuestionReq moveLectureQuestionReq){
+        LectureQuestion lectureQuestion=lectureQuestionService.getById(moveLectureQuestionReq.getQuestionId());
+        lectureQuestion.setQuestionStatus("expire");
+        QueryWrapper<LectureQuestion> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("id",moveLectureQuestionReq.getQuestionId());
+        lectureQuestionService.update(lectureQuestion,queryWrapper);
         return ResultUtils.success(lectureQuestion);
     }
 }

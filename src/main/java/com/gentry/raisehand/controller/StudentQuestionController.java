@@ -4,6 +4,7 @@ package com.gentry.raisehand.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gentry.raisehand.Req.AddStudentQuestionReq;
 import com.gentry.raisehand.Req.GetStudentQuestionReq;
+import com.gentry.raisehand.Req.GetStudentQuestionSReq;
 import com.gentry.raisehand.entity.LectureQuestionAnswer;
 import com.gentry.raisehand.entity.StudentQuestion;
 import com.gentry.raisehand.service.StudentQuestionService;
@@ -43,6 +44,16 @@ public class StudentQuestionController {
                 .setStudentQuestionType(addStudentQuestionReq.getStudentQuestionType());
         studentQuestionService.save(studentQuestion);
         return ResultUtils.success(studentQuestion);
+    }
+    @ApiOperation("StudentQuestion get by student")
+    @PostMapping(value = "/getStudentQuestionS")
+    public RestResult getStudentQuestionS(@RequestBody GetStudentQuestionSReq getStudentQuestionSReq){
+        QueryWrapper<StudentQuestion> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("student_id",getStudentQuestionSReq.getStudentId())
+                .eq("lecture_id",getStudentQuestionSReq.getLectureId());
+        List<StudentQuestion> studentQuestionList=studentQuestionService.list(queryWrapper);
+        return ResultUtils.success(studentQuestionList);
     }
     @ApiOperation("StudentQuestion get")
     @PostMapping(value = "/getStudentQuestion")

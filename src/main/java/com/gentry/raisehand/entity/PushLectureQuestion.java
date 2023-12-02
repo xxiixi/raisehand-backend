@@ -33,5 +33,5 @@ public class PushLectureQuestion implements Serializable {
     @TableField(fill = FieldFill.INSERT)
     private Integer version;
 
-
+    private Integer lectureId;
 }
