@@ -58,6 +58,9 @@ public class PushLectureQuestionController {
             queryWrapperAnswer
                     .eq("question_id",lectureQuestion.getId());
             List<LectureQuestionAnswer> lectureQuestionAnswerList = lectureQuestionAnswerService.list(queryWrapperAnswer);
+            for(LectureQuestionAnswer lectureQuestionAnswer:lectureQuestionAnswerList){
+                lectureQuestionAnswer.setAnswerStatus("notchoose");
+            }
             getLectureQuestionSRes.setLectureQuestionAnswers(lectureQuestionAnswerList);
             getLectureQuestionSRes.setLectureQuestion(lectureQuestion);
             getLectureQuestionSResList.add(getLectureQuestionSRes);

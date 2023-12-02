@@ -95,8 +95,8 @@ public class LectureQuestionController {
             pushLectureQuestion.setLectureId(postLectureQuestionReq.getLectureId());
             pushLectureQuestion.setStudentId(studentCourse.getStudentId());
             pushLectureQuestionList.add(pushLectureQuestion);
+            pushLectureQuestionService.save(pushLectureQuestion);
         }
-        pushLectureQuestionService.saveBatch(pushLectureQuestionList);
         return ResultUtils.success(pushLectureQuestionList);
     }
     @ApiOperation("LectureQuestion move to class")

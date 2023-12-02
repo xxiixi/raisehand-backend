@@ -102,17 +102,18 @@ public class CourseController {
                 .eq("course_name",getCourseSemesterReq.getCourseName())
                 .eq("course_code",getCourseSemesterReq.getCourseCode());
         List<Course> courseList=courseService.list(queryWrapper);
+        List<Course> courseList1=new ArrayList<>();
         for(Course course:courseList){
             QueryWrapper<TeacherCourse>teacherCourseQueryWrapper=new QueryWrapper<>();
             teacherCourseQueryWrapper
                     .eq("teacher_id",getCourseSemesterReq.getTeacherId())
                     .eq("course_id",course.getId());
-            if (teacherCourseService.getOne(teacherCourseQueryWrapper) ==null){
-                courseList.remove(course);
+            if (teacherCourseService.getOne(teacherCourseQueryWrapper) != null){
+                courseList1.add(course);
             }
         }
         List<GetStudentCourseRes>getStudentCourseResList=new ArrayList<>();
-        for(Course course:courseList){
+        for(Course course:courseList1){
             QueryWrapper<Lecture> lectureQueryWrapper = new QueryWrapper<>();
             lectureQueryWrapper.eq("course_id",course.getId());
             List<Lecture>lectureList=lectureService.list(lectureQueryWrapper);
