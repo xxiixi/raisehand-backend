@@ -34,5 +34,5 @@ public class Student implements Serializable {
     @TableField(fill = FieldFill.INSERT)
     private Integer version;
 
-
+    private String studentName;
 }

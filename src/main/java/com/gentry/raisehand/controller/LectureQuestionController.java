@@ -95,7 +95,14 @@ public class LectureQuestionController {
             pushLectureQuestion.setLectureId(postLectureQuestionReq.getLectureId());
             pushLectureQuestion.setStudentId(studentCourse.getStudentId());
             pushLectureQuestionList.add(pushLectureQuestion);
-            pushLectureQuestionService.save(pushLectureQuestion);
+            QueryWrapper<PushLectureQuestion> pushLectureQuestionQueryWrapper = new QueryWrapper<>();
+            pushLectureQuestionQueryWrapper
+                    .eq("question_id",postLectureQuestionReq.getQuestionId())
+                    .eq("student_id",studentCourse.getStudentId())
+                    .eq("lecture_id",postLectureQuestionReq.getLectureId());
+            if (pushLectureQuestionService.getOne(pushLectureQuestionQueryWrapper)==null){
+                pushLectureQuestionService.save(pushLectureQuestion);
+            }
         }
         return ResultUtils.success(pushLectureQuestionList);
     }

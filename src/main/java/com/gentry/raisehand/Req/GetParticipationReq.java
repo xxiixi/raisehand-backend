@@ -8,13 +8,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddStudentAnswerChoiceReq {
+public class GetParticipationReq {
     @NonNull
-    private int studentId;
-    @NonNull
-    private int questionId;
-    @NonNull
-    private int answerId;
-    @NonNull
-    private int lectureId;
+    private int courseId;
 }

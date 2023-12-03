@@ -37,6 +37,6 @@ public class StudentAnswerChoice implements Serializable {
     @TableLogic(value = "0", delval = "1")
     @TableField(fill = FieldFill.INSERT)
     private Integer deleteFlag;
-
+    private Integer lectureId;
 
 }

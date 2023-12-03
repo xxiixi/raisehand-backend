@@ -1,6 +1,7 @@
 package com.gentry.raisehand.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gentry.raisehand.Req.AddStudentAnswerChoiceReq;
 import com.gentry.raisehand.Req.AddStudentQuestionReq;
 import com.gentry.raisehand.entity.StudentAnswerChoice;
@@ -29,12 +30,25 @@ public class StudentAnswerChoiceController {
     @ApiOperation("StudentAnswerChoice add")
     @PostMapping(value = "/addStudentAnswerChoice")
     public RestResult addStudentAnswerChoice(@RequestBody AddStudentAnswerChoiceReq addStudentAnswerChoiceReq){
-        StudentAnswerChoice studentAnswerChoice=new StudentAnswerChoice();
-        studentAnswerChoice
+
+        QueryWrapper<StudentAnswerChoice>studentAnswerChoiceQueryWrapper=new QueryWrapper<>();
+        studentAnswerChoiceQueryWrapper
+                .eq("question_id",addStudentAnswerChoiceReq.getQuestionId())
+                .eq("student_id",addStudentAnswerChoiceReq.getStudentId());
+        StudentAnswerChoice studentAnswerChoice =studentAnswerChoiceService.getOne(studentAnswerChoiceQueryWrapper);
+        if(studentAnswerChoice != null){
+            studentAnswerChoice.setAnswerId(addStudentAnswerChoiceReq.getAnswerId());
+            studentAnswerChoiceService.update(studentAnswerChoice,studentAnswerChoiceQueryWrapper);
+        }else {
+            studentAnswerChoice=new StudentAnswerChoice();
+            studentAnswerChoice
                 .setAnswerId(addStudentAnswerChoiceReq.getAnswerId())
                 .setQuestionId(addStudentAnswerChoiceReq.getQuestionId())
-                .setStudentId(addStudentAnswerChoiceReq.getStudentId());
-        studentAnswerChoiceService.save(studentAnswerChoice);
+                .setStudentId(addStudentAnswerChoiceReq.getStudentId())
+                .setLectureId(addStudentAnswerChoiceReq.getLectureId());
+            studentAnswerChoiceService.save(studentAnswerChoice);
+        }
+
         return ResultUtils.success(studentAnswerChoice);
     }
 }

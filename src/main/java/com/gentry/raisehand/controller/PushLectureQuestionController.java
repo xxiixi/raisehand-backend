@@ -7,10 +7,7 @@ import com.gentry.raisehand.Req.GetLectureQuestionSReq;
 import com.gentry.raisehand.Req.PostLectureQuestionReq;
 import com.gentry.raisehand.Res.GetLectureQuestionSRes;
 import com.gentry.raisehand.entity.*;
-import com.gentry.raisehand.service.LectureQuestionAnswerService;
-import com.gentry.raisehand.service.LectureQuestionService;
-import com.gentry.raisehand.service.PushLectureQuestionService;
-import com.gentry.raisehand.service.TeacherStudentQuestionService;
+import com.gentry.raisehand.service.*;
 import com.gentry.raisehand.util.RestResult;
 import com.gentry.raisehand.util.ResultUtils;
 import io.swagger.annotations.Api;
@@ -42,6 +39,8 @@ public class PushLectureQuestionController {
     private LectureQuestionAnswerService lectureQuestionAnswerService;
     @Autowired
     private PushLectureQuestionService pushLectureQuestionService;
+    @Autowired
+    private StudentAnswerChoiceService studentAnswerChoiceService;
     @ApiOperation("LectureQuestion get by student")
     @PostMapping(value = "/getLectureQuestionS")
     public RestResult getLectureQuestionS(@RequestBody GetLectureQuestionSReq getLectureQuestionSReq){
@@ -59,7 +58,18 @@ public class PushLectureQuestionController {
                     .eq("question_id",lectureQuestion.getId());
             List<LectureQuestionAnswer> lectureQuestionAnswerList = lectureQuestionAnswerService.list(queryWrapperAnswer);
             for(LectureQuestionAnswer lectureQuestionAnswer:lectureQuestionAnswerList){
-                lectureQuestionAnswer.setAnswerStatus("notchoose");
+                QueryWrapper<StudentAnswerChoice> studentAnswerChoiceQueryWrapper=new QueryWrapper<>();
+                studentAnswerChoiceQueryWrapper
+                        .eq("question_id",lectureQuestionAnswer.getQuestionId())
+                        .eq("answer_id",lectureQuestionAnswer.getId())
+                        .eq("student_id",getLectureQuestionSReq.getStudentId());
+                StudentAnswerChoice studentAnswerChoice = studentAnswerChoiceService.getOne(studentAnswerChoiceQueryWrapper);
+                if (studentAnswerChoice != null){
+                    lectureQuestionAnswer.setAnswerStatus("choose");
+                }else {
+                    lectureQuestionAnswer.setAnswerStatus("notchoose");
+                }
+
             }
             getLectureQuestionSRes.setLectureQuestionAnswers(lectureQuestionAnswerList);
             getLectureQuestionSRes.setLectureQuestion(lectureQuestion);
