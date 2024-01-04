@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import redis.clients.jedis.Jedis;
 
+import java.util.UUID;
+
 import static java.util.Objects.hash;
 
 /**
@@ -58,20 +60,22 @@ public class TeacherController {
                 LoginRes loginRes = new LoginRes();
                 loginRes.setUserId(student.getId());
                 loginRes.setStatus("student");
-                Jedis jedis = new Jedis("127.0.0.1", 6379);
-                jedis.set(String.valueOf(student.getId()), String.valueOf(hash(student.getStudentPassword() + "raisehand")));
+                Jedis jedis = new Jedis("raisehand-redis.ziwzcj.clustercfg.memorydb.cn-north-1.amazonaws.com.cn", 6379);
+                String tokenS=String.valueOf(hash(student.getStudentPassword() + "raisehands"+ UUID.randomUUID()));
+                jedis.set(String.valueOf(student.getId()), tokenS);
                 jedis.expire(String.valueOf(student.getId()), 1728000);
-                loginRes.setToken(String.valueOf(hash(student.getStudentPassword() + "raisehand")));
+                loginRes.setToken(tokenS);
                 return ResultUtils.success(loginRes);
             }
         }else {
             LoginRes loginRes = new LoginRes();
             loginRes.setUserId(teacher.getId());
             loginRes.setStatus("teacher");
-            Jedis jedis = new Jedis("127.0.0.1", 6379);
-            jedis.set(String.valueOf(teacher.getId()), String.valueOf(hash(teacher.getTeacherPassword() + "raisehand")));
+            Jedis jedis = new Jedis("raisehand-redis.ziwzcj.clustercfg.memorydb.cn-north-1.amazonaws.com.cn", 6379);
+            String token=String.valueOf(hash(teacher.getTeacherPassword() + "raisehands"+ UUID.randomUUID()));
+            jedis.set(String.valueOf(teacher.getId()), token);
             jedis.expire(String.valueOf(teacher.getId()), 1728000);
-            loginRes.setToken(String.valueOf(hash(teacher.getTeacherPassword() + "raisehand")));
+            loginRes.setToken(token);
             return ResultUtils.success(loginRes);
         }
     }
@@ -82,7 +86,7 @@ public class TeacherController {
 
     }
     public int checkTeacherFunction(int teacherId,String token){
-        Jedis jedis = new Jedis("127.0.0.1",6379);
+        Jedis jedis = new Jedis("raisehand-redis.ziwzcj.clustercfg.memorydb.cn-north-1.amazonaws.com.cn",6379);
         System.out.println(jedis.exists(String.valueOf(teacherId)));
         System.out.println(jedis.get(String.valueOf(teacherId)));
         if (!jedis.exists(String.valueOf(teacherId))){
