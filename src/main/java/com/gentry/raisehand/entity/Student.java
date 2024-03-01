@@ -30,6 +30,12 @@ public class Student implements Serializable {
 
     private String studentPassword;
 
+//  New Columns
+    private String studentMobile;
+    private String studentUserid;
+    private String studentOpenid;
+    private String studentAvatarUrl;
+
     @Version
     @TableField(fill = FieldFill.INSERT)
     private Integer version;

@@ -126,6 +126,7 @@ public class LectureController {
         List<StudentCourse>studentCourseList=studentCourseService.list(studentCourseQueryWrapper);
         for (StudentCourse studentCourse:studentCourseList){
             GetStudentParticipationRes getStudentParticipationRes=new GetStudentParticipationRes();
+            // student
             Student student=studentService.getById(studentCourse.getStudentId());
             getStudentParticipationRes.setStudentName(student.getStudentName());
             getStudentParticipationRes.setStudentId(student.getId());

@@ -6,9 +6,9 @@ spring:
       matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: admin
-    password: KakYE1XlN1GZBGz3yewo
-    url: jdbc:mysql://raisehand-mysql.cfaycya26uuv.rds.cn-north-1.amazonaws.com.cn:3306/raise?serverTimezone=UTC&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+    username: root
+    password: stringerslab9@pfD
+    url: jdbc:mysql://raisehand.stingerslab.com:3306/raise?serverTimezone=UTC&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
