@@ -29,6 +29,13 @@ public class Teacher implements Serializable {
     private String teacherEmail;
 
     private String teacherPassword;
+
+    // New Columns
+    private String teacherMobile;
+    private String teacherUserid;
+    private String teacherOpenid;
+    private String teacherAvatarUrl;
+
     @Version
     @TableField(fill = FieldFill.INSERT)
     private Integer version;
