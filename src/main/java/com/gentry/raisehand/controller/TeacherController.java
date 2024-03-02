@@ -218,7 +218,7 @@ public class TeacherController {
                 .setStudentAvatarUrl(larkRegisterReq.getAvatar_url())
                 .setStudentUserid(larkRegisterReq.getUserid())
                 .setStudentEmail(larkRegisterReq.getEmail())
-                .setStudentPassword(larkRegisterReq.getPassword());  // 加密
+                .setStudentPassword(String.valueOf(hash(larkRegisterReq.getPassword() + "raisehand")));  // 加密
         studentService.save(newStudent);
 
 
