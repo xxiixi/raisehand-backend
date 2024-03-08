@@ -5,32 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb331bc-ea9e-4c37-8130-e6c2f63b63b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/raisehand.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Req/CheckOpenIdReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Req/GetCourseFromStudentReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Req/LarkLoginReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Req/LarkRegisterReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Res/CheckOpenIdRes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Res/CourseFromStudentRes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Res/LarkLoginRes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f5154512-f760-4dcb-b211-b829dca50505.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f5154512-f760-4dcb-b211-b829dca50505/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f5154512-f760-4dcb-b211-b829dca50505/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f5154512-f760-4dcb-b211-b829dca50505/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f5154512-f760-4dcb-b211-b829dca50505/storage_v2/_src_/schema/raise.7Cd0Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f5154512-f760-4dcb-b211-b829dca50505/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/LectureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/LectureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/entity/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/entity/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/LectureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/LectureController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentCourseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/TeacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/TeacherController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Teacher.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,36 +303,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore_missing_gitignore": "true",
-    "last_opened_file_path": "/Users/xxiixi/Desktop/gentry-gtsi-raisehand",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "spring.configuration.checksum": "c37093f95d8490a6b3dcf3179cbfaffe",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/xxiixi/Desktop/gentry-gtsi-raisehand&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;c37093f95d8490a6b3dcf3179cbfaffe&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\34327\IdeaProjects\raisehand\src\test\java" />
@@ -432,7 +416,8 @@
       <workItem from="1705987642212" duration="29061000" />
       <workItem from="1706599743100" duration="1624000" />
       <workItem from="1706860256266" duration="2667000" />
-      <workItem from="1709094102442" duration="33912000" />
+      <workItem from="1709094102442" duration="34875000" />
+      <workItem from="1709354960689" duration="1049000" />
     </task>
     <servers />
   </component>
