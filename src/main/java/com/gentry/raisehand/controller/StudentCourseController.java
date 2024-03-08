@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gentry.raisehand.Req.AddStudentFeedbackReq;
 import com.gentry.raisehand.Req.GetCourseFromStudentReq;
 import com.gentry.raisehand.Req.GetStudentCourseReq;
+import com.gentry.raisehand.Req.StudentJoinCourseReq;
 import com.gentry.raisehand.Res.CourseFromStudentRes;
 import com.gentry.raisehand.Res.GetStudentCourseRes;
 import com.gentry.raisehand.entity.Course;
@@ -96,6 +97,28 @@ public class StudentCourseController {
         }
         return ResultUtils.success(courseFromStudentResList);
     }
-
+    @ApiOperation("student join course")
+    @PostMapping(value = "/studentJoinCourse")
+    public RestResult studentJoinCourse(@RequestBody StudentJoinCourseReq studentJoinCourseReq){
+        QueryWrapper<Course>courseQueryWrapper=new QueryWrapper<>();
+        courseQueryWrapper.eq("share_id",studentJoinCourseReq.getCourseCode())
+                .eq("share_status","shared");
+        Course course =courseService.getOne(courseQueryWrapper);
+        if(course==null){
+         return ResultUtils.error("Your lesson code is wrong!");
+        }
+        QueryWrapper<StudentCourse>studentCourseQueryWrapper=new QueryWrapper<>();
+        studentCourseQueryWrapper.eq("share_id",studentJoinCourseReq.getCourseCode())
+                .eq("student_id",studentJoinCourseReq.getStudentId());
+        StudentCourse studentCourseFind=studentCourseService.getOne(studentCourseQueryWrapper);
+        if(studentCourseFind == null){
+            StudentCourse studentCourse=new StudentCourse();
+            studentCourse.setCourseId(course.getId())
+                    .setStudentId(studentJoinCourseReq.getStudentId());
+            studentCourseService.save(studentCourse);
+            return ResultUtils.success();
+        }
+        return ResultUtils.error("You've already added this course!");
+    }
 }
 

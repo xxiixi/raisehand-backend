@@ -39,5 +39,9 @@ public class Course implements Serializable {
     @TableField(fill = FieldFill.INSERT)
     private Integer deleteFlag;
 
+    private String shareId;
+
+    private String shareStatus;
+
 
 }

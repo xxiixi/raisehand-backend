@@ -2,11 +2,9 @@ package com.gentry.raisehand.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.gentry.raisehand.Req.AddCourseReq;
-import com.gentry.raisehand.Req.DeleteCourseReq;
-import com.gentry.raisehand.Req.GetCourseReq;
-import com.gentry.raisehand.Req.GetCourseSemesterReq;
+import com.gentry.raisehand.Req.*;
 import com.gentry.raisehand.Res.AddCourseRes;
+import com.gentry.raisehand.Res.GetCourseShareRes;
 import com.gentry.raisehand.Res.GetStudentCourseRes;
 import com.gentry.raisehand.entity.Course;
 import com.gentry.raisehand.entity.Lecture;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <p>
@@ -123,6 +122,40 @@ public class CourseController {
             getStudentCourseResList.add(getStudentCourseRes);
         }
         return ResultUtils.success(getStudentCourseResList);
+    }
+    @ApiOperation("search course share")
+    @PostMapping(value = "/getCourseShare")
+    public RestResult getCourseShare(@RequestBody GetCourseShareReq getCourseShareReq){
+        Course course =courseService.getById(getCourseShareReq.getCourseId());
+        GetCourseShareRes getCourseShareRes=new GetCourseShareRes();
+        if(course.getShareStatus().equals("shared")){
+            getCourseShareRes.setShareId(course.getShareId());
+            getCourseShareRes.setShareStatus(course.getShareStatus());
+        } else if (course.getShareStatus().equals("stop")){
+            getCourseShareRes.setShareStatus(course.getShareStatus());
+        } else {
+            getCourseShareRes.setShareStatus("stop");
+        }
+        return ResultUtils.success(getCourseShareRes);
+    }
+    @ApiOperation("set course share")
+    @PostMapping(value = "/setCourseShare")
+    public RestResult setCourseShare(@RequestBody SetCourseShareReq setCourseShareReq){
+        Course course =courseService.getById(setCourseShareReq.getCourseId());
+        GetCourseShareRes getCourseShareRes=new GetCourseShareRes();
+        if(course.getShareStatus().equals("shared")){
+            courseService.updateById(course.setShareStatus("stop"));
+        } else if(course.getShareStatus().equals("stop")){
+            courseService.updateById(course.setShareStatus("shared"));
+            getCourseShareRes.setShareId(course.getShareId());
+        }else {
+            course.setShareStatus("shared");
+            course.setShareId(UUID.randomUUID().toString());
+            courseService.updateById(course);
+            getCourseShareRes.setShareId(course.getShareId());
+        }
+        getCourseShareRes.setShareStatus(course.getShareStatus());
+        return ResultUtils.success(getCourseShareRes);
     }
 }
 
