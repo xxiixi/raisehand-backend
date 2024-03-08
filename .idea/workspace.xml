@@ -5,149 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb331bc-ea9e-4c37-8130-e6c2f63b63b4" name="Default Changelist" comment="Merge branch 'main' of https://gitee.com/stingerslab/gentry-gtsi-raisehand into main&#10;&#10;# Conflicts:&#10;#&#9;target/classes/com/gentry/raisehand/controller/TeacherController.class">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Req/GetCourseShareReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Req/SetCourseShareReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Req/StudentJoinCourseReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/Res/GetCourseShareRes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/RaisehandApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/AddCourseReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/AddLectureQuestionAnswerReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/AddLectureQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/AddLectureReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/AddStudentAnswerChoiceReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/AddStudentFeedbackReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/AddStudentQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/CheckOpenIdReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/CheckStudetReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/CheckTeacherReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/DeleteCourseReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/DeleteLectureQuestionAnswerReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/DeleteLectureQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/DeleteLectureReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetCourseFromStudentReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetCourseReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetCourseSemesterReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetLectureQuestionAnswerReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetLectureQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetLectureQuestionSReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetLectureReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetParticipationReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetStudentCourseReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetStudentFeedbackSReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetStudentFeedbackTReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetStudentParticipationReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetStudentQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/GetStudentQuestionSReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/LarkLoginReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/LarkRegisterReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/LoginReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/MoveLectureQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/PostLectureQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Req/ResponseStudentQuestionReq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/AddCourseRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/CheckOpenIdRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/CourseFromStudentRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/GetLectureQuestionSRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/GetParticipationRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/GetStudentCourseRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/GetStudentParticipationRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/LarkLoginRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/Res/LoginRes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/config/Myconfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/config/Swagger2Config.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/CourseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/LectureController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/LectureQuestionAnswerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/LectureQuestionController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/PushLectureQuestionController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentAnswerChoiceController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentAnswerTextController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentCourseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentFeedbackController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/StudentQuestionController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/TeacherCourseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/TeacherStudentQuestionController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Course.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Lecture.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/LectureQuestion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/LectureQuestionAnswer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/PushLectureQuestion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Student.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/StudentAnswerChoice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/StudentAnswerText.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/StudentCourse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/StudentFeedback.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/StudentQuestion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/Teacher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/TeacherCourse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/entity/TeacherStudentQuestion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/handler/MyMetaObjectHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/CourseMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/LectureMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/LectureQuestionAnswerMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/LectureQuestionMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/PushLectureQuestionMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/StudentAnswerChoiceMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/StudentAnswerTextMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/StudentCourseMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/StudentFeedbackMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/StudentMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/StudentQuestionMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/TeacherCourseMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/TeacherMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/TeacherStudentQuestionMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/CourseMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/LectureMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/LectureQuestionAnswerMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/LectureQuestionMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/PushLectureQuestionMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/StudentAnswerChoiceMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/StudentAnswerTextMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/StudentCourseMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/StudentFeedbackMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/StudentMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/StudentQuestionMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/TeacherCourseMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/TeacherMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/mapper/xml/TeacherStudentQuestionMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/CourseService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/LectureQuestionAnswerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/LectureQuestionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/LectureService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/PushLectureQuestionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/StudentAnswerChoiceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/StudentAnswerTextService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/StudentCourseService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/StudentFeedbackService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/StudentQuestionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/StudentService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/TeacherCourseService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/TeacherService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/TeacherStudentQuestionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/CourseServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/LectureQuestionAnswerServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/LectureQuestionServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/LectureServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/PushLectureQuestionServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/StudentAnswerChoiceServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/StudentAnswerTextServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/StudentCourseServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/StudentFeedbackServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/StudentQuestionServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/StudentServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/TeacherCourseServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/TeacherServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/service/impl/TeacherStudentQuestionServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/util/RestResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/util/ResultUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/TeacherController.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -447,7 +305,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "ignore_missing_gitignore": "true",
     "last_opened_file_path": "/Users/xxiixi/Desktop/gentry-gtsi-raisehand",
     "node.js.detected.package.eslint": "true",
@@ -552,7 +410,7 @@
       <workItem from="1706860256266" duration="2667000" />
       <workItem from="1709094102442" duration="34875000" />
       <workItem from="1709354960689" duration="1049000" />
-      <workItem from="1709874864890" duration="2915000" />
+      <workItem from="1709874864890" duration="3218000" />
     </task>
     <task id="LOCAL-00001" summary="ignore">
       <option name="closed" value="true" />
