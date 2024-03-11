@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cb331bc-ea9e-4c37-8130-e6c2f63b63b4" name="Default Changelist" comment="Merge branch 'main' of https://gitee.com/stingerslab/gentry-gtsi-raisehand into main&#10;&#10;# Conflicts:&#10;#&#9;target/classes/com/gentry/raisehand/controller/TeacherController.class">
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gentry/raisehand/controller/TeacherController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d/storage_v2/_src_/schema/raise.7Cd0Bg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d/storage_v2/_src_/schema/raise.7Cd0Bg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,7 +413,7 @@
       <workItem from="1706860256266" duration="2667000" />
       <workItem from="1709094102442" duration="34875000" />
       <workItem from="1709354960689" duration="1049000" />
-      <workItem from="1709874864890" duration="3218000" />
+      <workItem from="1709874864890" duration="35624000" />
     </task>
     <task id="LOCAL-00001" summary="ignore">
       <option name="closed" value="true" />

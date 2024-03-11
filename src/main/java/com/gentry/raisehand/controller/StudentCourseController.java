@@ -108,7 +108,7 @@ public class StudentCourseController {
          return ResultUtils.error("Your lesson code is wrong!");
         }
         QueryWrapper<StudentCourse>studentCourseQueryWrapper=new QueryWrapper<>();
-        studentCourseQueryWrapper.eq("share_id",studentJoinCourseReq.getCourseCode())
+        studentCourseQueryWrapper.eq("course_id",course.getId())
                 .eq("student_id",studentJoinCourseReq.getStudentId());
         StudentCourse studentCourseFind=studentCourseService.getOne(studentCourseQueryWrapper);
         if(studentCourseFind == null){
@@ -116,7 +116,7 @@ public class StudentCourseController {
             studentCourse.setCourseId(course.getId())
                     .setStudentId(studentJoinCourseReq.getStudentId());
             studentCourseService.save(studentCourse);
-            return ResultUtils.success();
+            return ResultUtils.success("success");
         }
         return ResultUtils.error("You've already added this course!");
     }
