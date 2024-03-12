@@ -143,15 +143,16 @@ public class CourseController {
     public RestResult setCourseShare(@RequestBody SetCourseShareReq setCourseShareReq){
         Course course =courseService.getById(setCourseShareReq.getCourseId());
         GetCourseShareRes getCourseShareRes=new GetCourseShareRes();
+        if(course.getShareStatus() == null){
+            course.setShareStatus("shared");
+            course.setShareId(UUID.randomUUID().toString());
+            courseService.updateById(course);
+            getCourseShareRes.setShareId(course.getShareId());
+        }
         if(course.getShareStatus().equals("shared")){
             courseService.updateById(course.setShareStatus("stop"));
         } else if(course.getShareStatus().equals("stop")){
             courseService.updateById(course.setShareStatus("shared"));
-            getCourseShareRes.setShareId(course.getShareId());
-        }else {
-            course.setShareStatus("shared");
-            course.setShareId(UUID.randomUUID().toString());
-            courseService.updateById(course);
             getCourseShareRes.setShareId(course.getShareId());
         }
         getCourseShareRes.setShareStatus(course.getShareStatus());
