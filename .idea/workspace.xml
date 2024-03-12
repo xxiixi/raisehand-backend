@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cb331bc-ea9e-4c37-8130-e6c2f63b63b4" name="Default Changelist" comment="Merge branch 'main' of https://gitee.com/stingerslab/gentry-gtsi-raisehand into main&#10;&#10;# Conflicts:&#10;#&#9;target/classes/com/gentry/raisehand/controller/TeacherController.class">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d/storage_v2/_src_/schema/raise.7Cd0Bg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5152324b-627e-405d-8534-1a9e4d76119d/storage_v2/_src_/schema/raise.7Cd0Bg.meta" afterDir="false" />
+    <list default="true" id="9cb331bc-ea9e-4c37-8130-e6c2f63b63b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gentry/raisehand/controller/StudentCourseController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -413,7 +410,7 @@
       <workItem from="1706860256266" duration="2667000" />
       <workItem from="1709094102442" duration="34875000" />
       <workItem from="1709354960689" duration="1049000" />
-      <workItem from="1709874864890" duration="35624000" />
+      <workItem from="1709874864890" duration="37206000" />
     </task>
     <task id="LOCAL-00001" summary="ignore">
       <option name="closed" value="true" />
@@ -431,7 +428,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709887629173</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge branch 'main' of https://gitee.com/stingerslab/gentry-gtsi-raisehand into main&#10;&#10;# Conflicts:&#10;#&#9;target/classes/com/gentry/raisehand/controller/TeacherController.class">
+      <option name="closed" value="true" />
+      <created>1710151707940</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710151707940</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
