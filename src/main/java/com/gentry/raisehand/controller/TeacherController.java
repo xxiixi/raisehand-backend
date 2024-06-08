@@ -20,6 +20,12 @@ import org.springframework.web.bind.annotation.*;
 
 import redis.clients.jedis.Jedis;
 
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+import java.util.Random;
 import java.util.UUID;
 
 import static java.util.Objects.hash;
@@ -223,6 +229,83 @@ public class TeacherController {
 
 
         return ResultUtils.success();
+    }
+
+    @ApiOperation("send verification code")
+    @PostMapping(value = "/sendVerificationCode")
+    public RestResult sendVerificationCode(@RequestBody SendVerificationCodeReq sendVerificationCodeReq){
+        String from = "scyxw5@gmail.com";
+        String host = "smtp.gmail.com";
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        Session session = Session.getDefaultInstance(properties,
+        new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("scyxw5@gmail.com", "rbxpldpsiemkeypn");
+            }
+        });
+        Random random = new Random();
+        int code = random.nextInt(900000) + 100000;
+//        String email = sendVerificationCodeReq.getEmail();
+
+        System.out.println("The new code is: " + code);
+        System.out.println(sendVerificationCodeReq.getEmail());
+        System.out.println(code);
+
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
+
+        jedis.set(sendVerificationCodeReq.getEmail(), String.valueOf(code)); // (key, value)
+        jedis.expire(sendVerificationCodeReq.getEmail(), 300);
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(sendVerificationCodeReq.getEmail()));
+            message.setSubject("Your Raisehand Verification Code");
+            message.setText("Hello,\n" +
+                    "\n" +
+                    "Your Raisehand verification code is: "+ code + "\n" +
+                    "\n" +
+                    "The code is valid for 5 minutes." +
+                    "\n" +
+                    "If you didn't request this, please ignore this email. No further action is needed.\n" +
+                    "\n" +
+                    "Best,\n" +
+                    "The Raisehand Team" );
+
+            Transport.send(message);
+            System.out.println("Email send successfully.");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+        return ResultUtils.success("Verification code sent.");
+    }
+
+    @ApiOperation("verify email address")
+    @PostMapping(value = "/verifyEmailAddress")
+    public RestResult verifyEmailAddress(@RequestBody SendVerificationCodeReq sendVerificationCodeReq){
+        // 从请求中获取电子邮件和用户输入的验证码
+        String email = sendVerificationCodeReq.getEmail();
+        String userInputCode = sendVerificationCodeReq.getCode();
+        System.out.println("user input code:"+ userInputCode);
+        System.out.println("input email:"+ email);
+
+        // 使用 Jedis 连接 Redis，查询保存的验证码
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
+        String savedCode = jedis.get(email);
+        System.out.println("the saved code is:"+savedCode);
+        if (savedCode != null && savedCode.equals(userInputCode)) {
+            // 验证码匹配且未过期
+            return ResultUtils.success("Verification successful.");
+        } else {
+            // 验证码不匹配或已过期
+            return ResultUtils.error("Verification failed.");
+        }
+
     }
 
 
